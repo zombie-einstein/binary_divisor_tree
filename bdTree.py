@@ -1,45 +1,33 @@
-from asciitree import draw_tree
+from binarytree import Node, pprint
 
-class node:
+class divNode(Node):
     "Divisor Tree Node"
     def __init__(self,n):
-        self.n = n # Value of this node
-        self.div = None # Child is divisor
-        self.prm = None # Child is relative prime
-
+        Node.__init__(self,n) 
+        
     def addChild(self,m):
         "Add new node, or recursive call to next child node"
-        if self.n == m : return
-        if m % self.n == 0:
-            if not self.div: self.div = node(m)
-            else: self.div.addChild(m)
+        if self.value == m : return
+        if m % self.value == 0:
+            if not self.left: self.left = divNode(m)
+            else: self.left.addChild(m)
         else:
-            if not self.prm: self.prm = node(m)
-            else: self.prm.addChild(m)
-
-def getNodeChildren(node):
-    "Return iterable of a nodes children"
-    ret = []
-    if node.prm: ret.append(node.prm)
-    if node.div: ret.append(node.div)
-    return ret
-
-def getNodeString(node):
-    "Return nodes value as str"
-    return str(node.n)
+            if not self.right: self.right = divNode(m)
+            else: self.right.addChild(m)
 
 class divTree:
-    "Divisor tree container"
+    "Divisor tree container, initialize as single node or from list of values"
     def __init__(self,i):
-        self.root = node(i)
+        if isinstance(i,(int,long)):
+            self.root = divNode(i)
+        elif isinstance(i,list):
+            self.root = divNode(i[0])
+            for j in i[1:]: self.addNode(j)
     
     def addNode(self,n):
+        "Add and propogate new node to tree"
         self.root.addChild(n)
 
     def printTree(self):
-        print draw_tree(self.root,getNodeChildren,getNodeString)
-
-A = divTree(2)
-for i in range(3,8): A.addNode(i)
-
-A.printTree()
+        "Use binarytree to print tree"
+        pprint(self.root)
