@@ -18,4 +18,5 @@ For example starting from a root value 2 then inserting the next 7 integers 3...
 Currently this is only a basic implementation. A couple of things are easy to spot
 * Iterating down right children will return list of (relative to root) primes
 * Iterating down left children will return powers of root
+
 Not actually wholly sure if this is practically useful or just fun twist on b-tree (though some cool stuff has come from things that just seemed interesting!). 
