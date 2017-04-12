@@ -5,6 +5,7 @@ Each node has has left and right children based on whether the node is/isn't a d
 
 For example starting from a root value 2 then inserting the next 7 integers 3...9 results in
 
+<pre>
     __2__
    /     \
   4       3
@@ -12,6 +13,7 @@ For example starting from a root value 2 then inserting the next 7 integers 3...
 8   6   9   5
              \
               7
+</pre>
 
 Currently this is only a basic implementation. A couple of things are easy to spot
 * Iterating down right children will return list of (relative to root) primes
